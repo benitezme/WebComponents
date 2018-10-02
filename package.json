@@ -1,5 +1,5 @@
 {
-  "name": "web-components",
+  "name": "@advancedalgos/web-components",
   "description": "Shared web components for Advanced Algos modules",
   "version": "0.0.1",
   "private": true,
@@ -15,6 +15,7 @@
     "graphql",
     "material-ui"
   ],
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest --no-cache --coverage --coverageDirectory=output/coverage/jest",
     "test-watch": "jest --watch --no-cache --coverage --coverageDirectory=output/coverage/jest",
@@ -22,9 +23,14 @@
     "dev": "NODE_ENV=development PORT=3333 webpack-serve --config ./webpack.config.js",
     "build": "NODE_ENV=production webpack --mode production --config ./webpack.config.js",
     "lint": "prettier-standard 'packages/*/src/**/*.js'",
-    "transpile": "babel src -d dist --copy-files",
+    "transpile": "npx babel src --out-dir dist --copy-files --source-maps",
     "prepublishOnly": "npm run transpile",
     "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+      "prop-types": "^15.6.2",
+      "react": "^16.5.0",
+      "react-dom": "^16.5.0"
   },
   "dependencies": {
     "@azure/storage-blob": "^10.1.0-preview",
@@ -42,6 +48,7 @@
     "react-image-cropper": "^1.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
