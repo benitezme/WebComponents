@@ -2,7 +2,6 @@
   "name": "@advancedalgos/web-components",
   "description": "Shared web components for Advanced Algos modules",
   "version": "0.0.1",
-  "private": true,
   "author": "Advanced Algos, Ltd",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
