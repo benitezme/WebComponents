@@ -1,17 +1,19 @@
-Lerna and Yarn Workspaces Concepts
+# Advanced Algos Web Components
 ==================================
-This is an example to demonstrate Lerna and Yarn Workspaces concepts.
+
+## Introduction
+
+The is a repository for shared React web components between the Advanced Algos platform modules.
 
 Getting Started
 ---------------
 ```bash
-$ yarn
-$ yarn build
-$ yarn start
+$ npm install
+$ npm run storybook
 ```
 
 Testing
 -------
 ```bash
-$ yarn test
+$ npm run test
 ```

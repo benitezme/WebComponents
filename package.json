@@ -1,43 +1,147 @@
 {
-  "name": "lerna-workspaces-concepts",
-  "description": "Example to demonstrate Lerna and Yarn Workspaces concepts",
-  "version": "1.0.0",
+  "name": "web-components",
+  "description": "Shared web components for Advanced Algos modules",
+  "version": "0.0.1",
   "private": true,
-  "author": "Naresh Bhatia",
-  "license": "MIT",
+  "author": "Advanced Algos, Ltd",
+  "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nareshbhatia/lerna-workspaces-concepts.git"
+    "url": "https://github.com/AdvancedAlgos/WebComponents.git"
   },
-  "workspaces": [
-    "packages/*"
+  "keywords": [
+    "react",
+    "apollo",
+    "graphql",
+    "material-ui"
   ],
   "scripts": {
-    "test": "jest",
-    "del-dist": "lerna exec --parallel -- del-cli dist",
-    "prebuild": "yarn del-dist",
-    "build": "lerna exec -- babel src -d dist --ignore test.js",
-    "start": "node packages/weather-app/dist/weather-app"
+    "test": "jest --no-cache --coverage --coverageDirectory=output/coverage/jest",
+    "test-watch": "jest --watch --no-cache --coverage --coverageDirectory=output/coverage/jest",
+    "storybook": "start-storybook -p 6006",
+    "dev": "NODE_ENV=development PORT=3333 webpack-serve --config ./webpack.config.js",
+    "build": "NODE_ENV=production webpack --mode production --config ./webpack.config.js",
+    "lint": "prettier-standard 'packages/*/src/**/*.js'",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@azure/storage-blob": "^10.1.0-preview",
+    "@material-ui/core": "^3.0.3",
+    "@material-ui/icons": "^3.0.1",
+    "apollo-client": "^2.4.2",
+    "blob-util": "^2.0.2",
+    "browser-image-resizer": "^1.2.0",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.9.2",
+    "prop-types": "^15.6.2",
+    "react-apollo": "^2.1.11",
+    "react-dropzone": "^5.1.0",
+    "react-image-crop": "^5.0.0",
+    "react-image-cropper": "^1.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^23.0.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "del-cli": "^1.1.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^4.0.0-alpha.23",
+    "@storybook/addon-knobs": "^4.0.0-alpha.23",
+    "@storybook/addon-links": "^4.0.0-alpha.23",
+    "@storybook/addon-notes": "^4.0.0-alpha.23",
+    "@storybook/addon-options": "^3.4.11",
+    "@storybook/addons": "^4.0.0-alpha.23",
+    "@storybook/react": "^4.0.0-alpha.23",
+    "autoprefixer": "^8.6.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.2",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
+    "connect-history-api-fallback": "^1.5.0",
+    "cross-fetch": "^2.2.2",
+    "css-loader": "^0.28.11",
+    "dotenv-webpack": "^1.5.7",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.24.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "file-loader": "^1.1.11",
+    "graphql-tools": "^4.0.0",
+    "html-webpack-harddisk-plugin": "^0.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^23.1.0",
-    "lerna": "^2.11.0"
+    "koa-connect": "^2.0.1",
+    "mini-css-extract-plugin": "^0.4.2",
+    "moment": "^2.22.2",
+    "node-sass-chokidar": "^1.3.3",
+    "optimize-css-assets-webpack-plugin": "^4.0.3",
+    "postcss-loader": "^2.1.6",
+    "prettier": "^1.14.2",
+    "prettier-standard": "^8.0.1",
+    "react-test-renderer": "^16.2.0",
+    "regenerator-runtime": "^0.12.1",
+    "sass-loader": "^7.1.0",
+    "script-ext-html-webpack-plugin": "^2.0.1",
+    "storybook-addon-apollo-graphql": "^2.1.0",
+    "storybook-addon-material-ui": "^0.9.0-alpha.16",
+    "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.3.0",
+    "watch": "^1.0.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-hot-client": "^4.1.1",
+    "webpack-merge": "^4.1.4",
+    "webpack-serve": "^1.0.4",
+    "workbox-build": "^3.4.1",
+    "workbox-cli": "^3.4.1"
   },
   "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "!src/index.js",
+      "!src/enzyme.js",
+      "!/node_modules/",
+      "!/index.js",
+      "!/registerServiceWorker.js",
+      "src/**/*.{js}"
+    ],
     "collectCoverage": true
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "dist/",
+      "build/"
+    ]
   }
 }

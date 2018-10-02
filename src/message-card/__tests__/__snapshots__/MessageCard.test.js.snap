@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageCard tests renders matching snapshot 1`] = `
+<div
+  className="MuiPaper-root-5 MuiPaper-elevation1-8 MuiPaper-rounded-6 MuiCard-root-4 MessageCard-card-1"
+>
+  <div
+    className="MessageCard-cardDetails-2"
+  >
+    <div
+      className="MuiCardContent-root-32 MessageCard-cardContent-3"
+    >
+      <h1
+        className="MuiTypography-root-33 MuiTypography-headline-38 MuiTypography-gutterBottom-51 MuiTypography-alignCenter-47"
+      >
+        Renders correctly
+      </h1>
+    </div>
+  </div>
+</div>
+`;
