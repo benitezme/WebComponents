@@ -144,10 +144,8 @@ class ImageUpload extends Component {
     }
   }
 
-  async handleCrop (e, cropper) {
-    e.preventDefault()
-    console.log('handleCrop: ', cropper)
-    const cropped = cropper.crop()
+  async handleCrop (cropped) {
+    console.log('handleCrop', this.cropped)
     const croppedBlob = await imgSrcToBlob(cropped, 'image/png', 'Anonymous')
     let resizedBlob = await readAndCompressImage(croppedBlob, this.saveConfig)
 
@@ -167,7 +165,7 @@ class ImageUpload extends Component {
     const containerURL = Azure.ContainerURL.fromServiceURL(serviceURL, containerName)
     const blockBlobURL = Azure.BlockBlobURL.fromContainerURL(containerURL, fileName)
 
-    await Azure.uploadBrowserDataToBlockBlob(Azure.Aborter.None, this.state.cropped, blockBlobURL)
+    await Azure.uploadBrowserDataToBlockBlob(Azure.Aborter.None, this.state.editedImage, blockBlobURL)
 
     const image = `${AzureStorageUrl}${containerName}/${fileName}?${Math.random()}` // random number keeps browser from using cached version of existing image
     handleUrl(image) // pass image URL up to be save to DB

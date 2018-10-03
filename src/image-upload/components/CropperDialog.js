@@ -21,6 +21,13 @@ const styles = theme => ({
 })
 
 class CropperDialog extends Component {
+  constructor (props) {
+    super(props)
+
+    this.handleCrop = this.handleCrop.bind(this)
+    this.cropper = React.createRef()
+  }
+
   render () {
     const { classes, open, handleClose, imgSrc, handleCrop, handleCancel, cropperRef } = this.props
     console.log(cropperRef)
@@ -41,7 +48,7 @@ class CropperDialog extends Component {
                   src={imgSrc}
                   originX={100}
                   originY={100}
-                  ref={ref => { this.cropper = ref }}
+                  ref={this.cropper}
                   ratio={1}
                 />
               )}
@@ -52,7 +59,7 @@ class CropperDialog extends Component {
               Cancel
             </Button>
             <Button
-              onClick={(e) => handleCrop(e, this.cropper)}
+              onClick={this.handleCrop}
               color='primary'
             >
               Crop Image
@@ -61,6 +68,12 @@ class CropperDialog extends Component {
         </div>
       </Dialog>
     )
+  }
+
+  async handleCrop () {
+    console.log('CropperDialog handleCrop: ', this.cropper.current)
+    const cropped = this.cropper.current.crop()
+    this.props.handleCrop(cropped)
   }
 }
 
