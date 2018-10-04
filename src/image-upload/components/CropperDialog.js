@@ -29,7 +29,7 @@ class CropperDialog extends Component {
   }
 
   render () {
-    const { classes, open, handleClose, imgSrc, handleCrop, handleCancel, cropperRef } = this.props
+    const { classes, open, handleClose, imgSrc, handleCancel, cropperRef, cropRatio } = this.props
     console.log(cropperRef)
     return (
       <Dialog
@@ -49,7 +49,7 @@ class CropperDialog extends Component {
                   originX={100}
                   originY={100}
                   ref={this.cropper}
-                  ratio={1}
+                  ratio={cropRatio}
                 />
               )}
             </div>
@@ -71,7 +71,6 @@ class CropperDialog extends Component {
   }
 
   async handleCrop () {
-    console.log('CropperDialog handleCrop: ', this.cropper.current)
     const cropped = this.cropper.current.crop()
     this.props.handleCrop(cropped)
   }
@@ -84,7 +83,8 @@ CropperDialog.propTypes = {
   imgSrc: PropTypes.string,
   handleCrop: PropTypes.func.isRequired,
   cropperRef: PropTypes.any.isRequired,
-  handleCancel: PropTypes.func.isRequired
+  handleCancel: PropTypes.func.isRequired,
+  cropRatio: PropTypes.number.isRequired
 }
 
 export default withStyles(styles)(CropperDialog)

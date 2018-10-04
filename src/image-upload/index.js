@@ -31,7 +31,8 @@ const cropConfigDefault = {
   x: 10,
   y: 10,
   width: 200,
-  height: 200
+  height: 200,
+  ratio: 1 / 1
 }
 
 // default config for image resize and quality
@@ -78,7 +79,8 @@ class ImageUpload extends Component {
   render () {
     const {
       classes,
-      existingImage
+      existingImage,
+      cropRatio
     } = this.props
 
     let image = null
@@ -114,6 +116,7 @@ class ImageUpload extends Component {
               handleCancel={this.handleCancel}
               cropImagePreview={this.cropPreview}
               cropperRef={this.cropper}
+              cropRatio={cropRatio}
             />
           </React.Fragment>
         )}
@@ -145,7 +148,6 @@ class ImageUpload extends Component {
   }
 
   async handleCrop (cropped) {
-    console.log('handleCrop', this.cropped)
     const croppedBlob = await imgSrcToBlob(cropped, 'image/png', 'Anonymous')
     let resizedBlob = await readAndCompressImage(croppedBlob, this.saveConfig)
 
@@ -197,6 +199,7 @@ ImageUpload.propTypes = {
   classes: PropTypes.object.isRequired,
   cropContainerConfig: PropTypes.object, // { x: 10, y: 10, width: 200, height: 200 } (default)
   cropPreviewBox: PropTypes.object, // { width: 350, height: 350 } (default)
+  cropRatio: PropTypes.number.isRequired, // ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150
   saveImageConfig: PropTypes.object, // see imageResizeConfig above for default (default)
   containerName: PropTypes.string.isRequired, // name of Azure Container image will be saved in
   fileName: PropTypes.string.isRequired, // filename to save image as
