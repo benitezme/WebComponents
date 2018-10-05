@@ -1,5 +1,5 @@
 # Advanced Algos Web Components
-==================================
+[![npm version](https://badge.fury.io/js/%40advancedalgos%2Fweb-components.svg)](https://badge.fury.io/js/%40advancedalgos%2Fweb-components)
 
 ## Introduction
 
@@ -54,7 +54,11 @@ export const YourComponent = () => (
 
 
 ## Image Upload
-Image Upload is a complex multi-functional component that encompasses allowing a user to preview an existing image, choose a new image, crop and resize that image, and then upload that image to Azure Blob Storage.  
+Image Upload is a complex multi-functional component that encompasses allowing a user to preview an existing image, choose a new image, crop and resize that image, and then upload that image to Azure Blob Storage.
+
+We use an Azure Shared Access Signature (SAS) created on a by-container basis that should be created on your server-side. The ImageUpload component then appends the SAS query parameters to the Storage Blob url with container and filename to upload the image.
+
+View the [Full Example](#full-example) for examples with use of client-side GraphQL mutation and server-side generation of the SASurl. 
 
 ```javascript
 import React from 'react'
@@ -99,12 +103,12 @@ export default YourComponent
 | `cropRatio`      | Number | ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150                                                                                                |
 | `saveImageConfig` | Object | Configuration of image saved to storage                       |
 | `AzureStorageUrl`      | String  | *Required.* Azure Storage Url (just the storage url; container and filename will be appended)                                                                                                       |
-| `AzureSASURL`      | String | *Required.* The Azure Shared Access Signature (SAS) that allows saving to the Blob without using full-access keys. See [Full Example](#full-example) for server side example.
-
+| `AzureSASURL`      | String | *Required.* The Azure Shared Access Signature (SAS) that allows saving to the Blob without using full-access keys. See [Full Example](#full-example) for server side example. 
+                                                                                                       
 #### Default Values
 | Props              | Default       |
 | ------------------ | ------------- |
-| `cropContainer`    | `{ x: 10, y: 10, width: 200, height: 200 }` |
+| `cropContainer`    | `{ x: 10, y: 10, width: 200, height: 200 }` | 
 |`cropPreviewBox`    | `{ width: 350, height: 350 }` |
 |`cropRatio`         | `1 / 1` |
 |`saveImageConfig`   | `{quality: 0.6, maxWidth: 200, maxHeight: 200, autoRotate: true, debug: true, mimeType: 'image/jpeg}` |
@@ -114,7 +118,14 @@ export default YourComponent
 
 ```javascript
 import React, { Component } from 'react'
+import gql from 'graphql-tag'
 import { MessageCard, ImageUpload } from '@advancedalgos/web-components'
+
+const GET_AZURE_SAS = gql`
+  mutation getAzureSAS($containerName: String!) {
+    getAzureSAS(containerName: $containerName)
+  }
+`
 
 export class YourComponent extends Component {
   constructor (props) {
@@ -134,26 +145,24 @@ export class YourComponent extends Component {
         {(updateUserProfile, { loading, error, data }) => {
         	let user = data.updateUserProfile
             if (loading) {
-              loader = (<MessageCard message='Submitting team...' />)
+              loader = (<MessageCard message='Updating user profile...' />)
             }
-
+          
           return (
               <Mutation mutation={GET_AZURE_SAS} >
                 {(getAzureSAS, { loading, error, data }) => {
-                  console.log('getAzureSAS: ', loading, error, data, team.profile)
+
                   const AzureStorageUrl = process.env.AZURE_STORAGE_URL
                   const containerName = user.name
                   const fileName = `${user.name}-avatar.jpg`
+                  let avatar = user.profile.avatar
+                  
                   let AzureSASURL
                   if (!loading && data !== undefined) {
                     AzureSASURL = data.getAzureSAS
                   } else {
                     getAzureSAS({ variables: { containerName: containerName } })
                   }
-
-                  let avatar = null
-                  if (this.state.avatar !== null) avatar = this.state.avatar
-                  if (team.profile !== null && user.profile.avatar !== undefined && user.profile.avatar !== null) avatar = user.profile.avatar
 
                   if (loading || data === undefined) {
                     return (<MessageCard message='Loading...' />)
@@ -191,7 +200,7 @@ export class YourComponent extends Component {
 
   handleAvatar (avatarUrl) {
     console.log('handleAvatar: ', avatarUrl)
-    this.setState({ avatar: `${avatarUrl}?${Math.random()}` })  // random number makes browser loads latest image version
+    this.setState({ avatar: `${avatarUrl}?${Math.random()}` })  // random number makes browser load latest image version
   }
 }
 ```
@@ -225,11 +234,11 @@ const createSASQueryURL = async (containerName) => {
   let today = new Date()
   let week = new Date()
   week.setDate(today.getDate() + 7)
-
+  
   // Create SharedKeyCredential and attach to pipline
   const SKC = new Azure.SharedKeyCredential(azureAccount, azureKey)
   const pipeline = Azure.StorageURL.newPipeline(SKC)
-
+  
   // Create container URL
   const serviceURL = new Azure.ServiceURL(azureStorageUrl, pipeline)
   const containerURL = Azure.ContainerURL.fromServiceURL(serviceURL, containerName)
@@ -285,19 +294,27 @@ module.exports = { createSASQueryURL }
 
 ### Libraries
 
-* [react]()
-* [apollo-client]()
-* [material-ui]()
-* [@azure/storage-blob]()
+* [react](https://reactjs.org/)
+* [graphql](https://howtographql.com)
+* [apollo-client](https://www.apollographql.com/docs/react/)
+* [material-ui](https://material-ui.com/api/)
+* [@azure/storage-blob](https://github.com/Azure/azure-storage-js)
 
 
 ### Getting Started
+
+* [storybook](https://storybook.js.org/)
+
 ```bash
 $ npm install
 $ npm run storybook
 ```
 
 ### Testing
+
+* [jest](https://jestjs.io/)
+* [enzyme](https://airbnb.io/enzyme/docs/guides/jest.html)
+
 ```bash
 $ npm run test
 ```
