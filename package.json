@@ -1,7 +1,7 @@
 {
   "name": "@advancedalgos/web-components",
   "description": "Shared web components for Advanced Algos modules",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "author": "Advanced Algos, Ltd",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
@@ -22,8 +22,6 @@
     "dev": "NODE_ENV=development PORT=3333 webpack-serve --config ./webpack.config.js",
     "build": "NODE_ENV=production webpack --mode production --config ./webpack.config.js",
     "lint": "prettier-standard 'packages/*/src/**/*.js'",
-    "transpile": "npx babel src --out-dir dist --copy-files --source-maps",
-    "prepublishOnly": "npm run transpile",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
@@ -50,6 +48,7 @@
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^4.0.0-alpha.23",
