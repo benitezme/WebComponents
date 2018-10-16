@@ -98,7 +98,7 @@ class ImageUpload extends Component {
     return (
       <div className={classes.imageUploadContainer}>
         {this.state.event === 'cropping' && (
-          <Typography variant='title' color='primary' >Cropping...</Typography>
+          <Typography variant='h6' color='primary' >Cropping...</Typography>
         )}
         {this.state.event !== 'cropping' && (
           <React.Fragment>
@@ -110,7 +110,7 @@ class ImageUpload extends Component {
                 <DropZone onDrop={this.onDrop} handleCancel={this.handleCancel} />
               )}
               { this.state.event === 'uploaded' && (
-                <Typography variant='title' color='primary' >Save profile to save image changes</Typography>
+                <Typography variant='h6' color='primary' >Save profile to save image changes</Typography>
               )}
             </div>
             <CropperDialog

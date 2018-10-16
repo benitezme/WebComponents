@@ -1,3 +1,4 @@
+dist
 examples
 .storybook
 webpack.config.js
