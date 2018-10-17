@@ -8,6 +8,7 @@
   "extends": ["standard", "standard-react", "plugin:jest/recommended"],
   "plugins": ["jest"],
   rules: {
-    'jest/valid-expect': 0
+    'jest/valid-expect': 0,
+    'react/jsx-boolean-value': 0
   }
 }

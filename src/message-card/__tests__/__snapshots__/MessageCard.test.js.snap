@@ -10,11 +10,11 @@ exports[`MessageCard tests renders matching snapshot 1`] = `
     <div
       className="MuiCardContent-root-32 MessageCard-cardContent-3"
     >
-      <h1
-        className="MuiTypography-root-33 MuiTypography-headline-38 MuiTypography-gutterBottom-51 MuiTypography-alignCenter-47"
+      <h5
+        className="MuiTypography-root-33 MuiTypography-h5-49 MuiTypography-gutterBottom-60 MuiTypography-alignCenter-56"
       >
         Renders correctly
-      </h1>
+      </h5>
     </div>
   </div>
 </div>

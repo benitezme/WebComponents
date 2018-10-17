@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MessageCard tests renders matching snapshot with dialog closed 1`] = `null`;
+exports[`CropperDialog tests renders matching snapshot with dialog closed 1`] = `null`;

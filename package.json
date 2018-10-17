@@ -16,7 +16,7 @@
   ],
   "main": "src/index.js",
   "scripts": {
-    "test": "jest --no-cache --coverage --coverageDirectory=output/coverage/jest",
+    "test": "jest -u --no-cache --coverage --coverageDirectory=output/coverage/jest",
     "test-watch": "jest --watch --no-cache --coverage --coverageDirectory=output/coverage/jest",
     "storybook": "start-storybook -p 6006",
     "dev": "NODE_ENV=development PORT=3333 webpack-serve --config ./webpack.config.js",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^10.1.0-preview",
-    "@material-ui/core": "^3.0.3",
+    "@material-ui/core": "^3.2.2",
     "@material-ui/icons": "^3.0.1",
     "apollo-client": "^2.4.2",
     "blob-util": "^2.0.2",
