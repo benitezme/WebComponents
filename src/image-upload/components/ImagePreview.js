@@ -24,9 +24,6 @@ const styles = theme => ({
       '& $imageBackdrop': {
         opacity: 0.15
       },
-      '& $imageMarked': {
-        opacity: 0
-      },
       '& $imageTitle': {
         backgroundColor: theme.palette.common.black,
         opacity: 0.4
