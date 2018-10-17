@@ -72,7 +72,8 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
       fileName={fileName}
       containerName={containerName}
       existingImage={avatar}
-      cropContainer={{ x: 10, y: 10, width: 200, height: 200 }}
+      imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
         quality: 0.6,
@@ -98,7 +99,8 @@ export default YourComponent
 | `fileName`        | String   | *Required.* File name that image is uploaded to storage as                                                                                                |
 | `containerName`   | String  | *Required.* StorageContainer name that image is uploaded to  |
 | `existingImage`           | String (url) | Url of pre-existing image. Usually will be same as URL returned from `handleUrl`                                                   |
-| `cropContainer`            | Object | Size and location of cropper on image in crop mode |
+| `imagePreviewConfig`            | Object | Existing image preview and change button text |
+| `cropContainerConfig`            | Object | Size and location of cropper on image in crop mode |
 | `cropPreviewBox`          | Object | Dimensions of cropper preview |
 | `cropRatio`      | Number | ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150                                                                                                |
 | `saveImageConfig` | Object | Configuration of image saved to storage                       |
@@ -108,7 +110,8 @@ export default YourComponent
 #### Default Values
 | Props              | Default       |
 | ------------------ | ------------- |
-| `cropContainer`    | `{ x: 10, y: 10, width: 200, height: 200 }` | 
+| `imagePreviewConfig`    | `{ width: 350, title: 'Change Avatar' }` |
+| `cropContainerConfig`    | `{ x: 10, y: 10, width: 200, height: 200 }` | 
 |`cropPreviewBox`    | `{ width: 350, height: 350 }` |
 |`cropRatio`         | `1 / 1` |
 |`saveImageConfig`   | `{quality: 0.6, maxWidth: 200, maxHeight: 200, autoRotate: true, debug: true, mimeType: 'image/jpeg}` |
@@ -174,8 +177,8 @@ export class YourComponent extends Component {
                           fileName={fileName}
                           containerName={containerName}
                           existingImage={avatar}
-                          cropContainer={{ x: 10, y: 10, width: 200, height: 200 }}
-                          cropPreviewBox={{ width: 350, height: 350 }}
+                          imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      					  cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}                          cropPreviewBox={{ width: 350, height: 350 }}
                           saveImageConfig={{
                             quality: 0.6,
                             maxWidth: 200,

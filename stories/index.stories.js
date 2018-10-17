@@ -38,7 +38,8 @@ storiesOf('ImageUpload', module)
       containerName={text('containerName', 'test-team')}
       existingImage={placeholder}
       cropRatio={1}
-      cropContainer={{ x: 10, y: 10, width: 200, height: 200 }}
+      imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
         quality: 0.6,
@@ -98,7 +99,7 @@ class LoadImage extends React.Component {
 storiesOf('ImageUpload Components', module)
   .addDecorator(withKnobs)
   .add('Image Preview component', () => (
-    <ImagePreview handleChangeImage={action('Change clicked')} image={placeholder} />
+    <ImagePreview handleChangeImage={action('Change clicked')} image={placeholder} imagePreview={{ width: 400, title: 'Change Avatar' }} />
   ))
   .add('DropZone component', () => (
     <DropZone onDrop={action('Image dropped or selected')} handleCancel={action('Change image cancelled')} />
