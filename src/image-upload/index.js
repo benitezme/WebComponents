@@ -58,7 +58,6 @@ class ImageUpload extends Component {
     this.handleClose = this.handleClose.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.saveImage = this.saveImage.bind(this)
-    this.cropper = React.createRef()
     this.debug = this.props.debug
 
     let cropConfig = props.cropContainerConfig !== undefined ? props.cropContainerConfig : cropConfigDefault
@@ -120,7 +119,6 @@ class ImageUpload extends Component {
               handleCrop={this.handleCrop}
               handleCancel={this.handleCancel}
               cropImagePreview={this.cropPreview}
-              cropperRef={this.cropper}
               cropRatio={cropRatio}
             />
           </React.Fragment>
