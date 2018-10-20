@@ -3,7 +3,12 @@ examples
 .storybook
 webpack.config.js
 stories
+src/*/stories
 output
 node_modules
 coverage
 .env
+tools
+postcss.config.js
+webpack.config.js
+src/*/__tests__/__snapshots__
