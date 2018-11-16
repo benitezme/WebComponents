@@ -13,8 +13,9 @@ import { DropZone, ImagePreview, CropperDialog } from './components/'
 const styles = theme => ({
   imageUploadContainer: {
     display: 'block',
-    margin: '1em',
-    height: 200
+    margin: 0,
+    height: 200,
+    overflow: 'visible'
   }
 })
 
@@ -89,6 +90,7 @@ class ImageUpload extends Component {
   render () {
     const {
       classes,
+      containerStyle,
       existingImage,
       cropRatio,
       fileName
@@ -103,7 +105,16 @@ class ImageUpload extends Component {
     }
 
     return (
-      <div className={classes.imageUploadContainer}>
+      <div
+        className={classes.imageUploadContainer}
+        style={{
+          'display': containerStyle.display,
+          'margin': containerStyle.margin,
+          'height': containerStyle.height,
+          'width': containerStyle.width,
+          'overflow': containerStyle.overflow
+        }}
+      >
         {this.state.event === 'cropping' && (
           <Typography variant='h6' color='primary' >Cropping...</Typography>
         )}
@@ -208,6 +219,7 @@ class ImageUpload extends Component {
 
 ImageUpload.propTypes = {
   classes: PropTypes.object.isRequired,
+  containerStyle: PropTypes.object,
   imagePreviewConfig: PropTypes.object, // { width: 400, title: 'Change Avatar'}
   cropContainerConfig: PropTypes.object, // { x: 10, y: 10, width: 200, height: 200 } (default)
   cropPreviewBox: PropTypes.object, // { width: 350, height: 350 } (default)

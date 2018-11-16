@@ -15,6 +15,7 @@ const styles = theme => ({
   image: {
     position: 'relative',
     height: 200,
+    width: 'auto',
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
       height: 100
@@ -78,7 +79,8 @@ export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }
       focusVisibleClassName={classes.focusVisible}
       onClick={handleChangeImage}
       style={{
-        width: imagePreview.width
+        width: imagePreview.width,
+        height: imagePreview.height
       }}
     >
       <span
@@ -94,6 +96,9 @@ export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }
           variant='h3'
           color='inherit'
           className={classes.imageTitle}
+          style={{
+            fontSize: imagePreview.fontSize
+          }}
         >
           {imagePreview.title}
         </Typography>
