@@ -15,7 +15,7 @@ const styles = theme => ({
     display: 'block',
     margin: 0,
     height: 200,
-    overflow: 'hidden'
+    overflow: 'visible'
   }
 })
 

@@ -58,7 +58,7 @@ Image Upload is a complex multi-functional component that encompasses allowing a
 
 We use an Azure Shared Access Signature (SAS) created on a by-container basis that should be created on your server-side. The ImageUpload component then appends the SAS query parameters to the Storage Blob url with container and filename to upload the image.
 
-View the [Full Example](#full-example) for examples with use of client-side GraphQL mutation and server-side generation of the SASurl. 
+View the [Full Example](#full-example) for examples with use of client-side GraphQL mutation and server-side generation of the SASurl.
 
 ```javascript
 import React from 'react'
@@ -72,7 +72,7 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
       fileName={fileName}
       containerName={containerName}
       existingImage={avatar}
-      imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      imagePreviewConfig={{ width: 350, height:'auto', title: 'Change Avatar', fontSize: '24px' }}
       cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
@@ -81,6 +81,13 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
         maxHeight: 200,
         autoRotate: true,
         mimeType: 'image/jpeg'
+      }}
+      containerStyle={{
+        display: 'block',
+        margin: '30px',
+        height: '100px',
+        width: '400px',
+        overflow: 'visible'
       }}
       AzureStorageUrl={AzureStorageUrl}
       AzureSASURL={AzureSASURL}
@@ -100,18 +107,20 @@ export default YourComponent
 | `containerName`   | String  | *Required.* StorageContainer name that image is uploaded to  |
 | `existingImage`           | String (url) | Url of pre-existing image. Usually will be same as URL returned from `handleUrl`                                                   |
 | `imagePreviewConfig`            | Object | Existing image preview and change button text |
+| `containerStyle`            | Object | Style of main container |
 | `cropContainerConfig`            | Object | Size and location of cropper on image in crop mode |
 | `cropPreviewBox`          | Object | Dimensions of cropper preview |
 | `cropRatio`      | Number | ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150                                                                                                |
 | `saveImageConfig` | Object | Configuration of image saved to storage                       |
 | `AzureStorageUrl`      | String  | *Required.* Azure Storage Url (just the storage url; container and filename will be appended)                                                                                                       |
-| `AzureSASURL`      | String | *Required.* The Azure Shared Access Signature (SAS) that allows saving to the Blob without using full-access keys. See [Full Example](#full-example) for server side example. 
-                                                                                                       
+| `AzureSASURL`      | String | *Required.* The Azure Shared Access Signature (SAS) that allows saving to the Blob without using full-access keys. See [Full Example](#full-example) for server side example.
+
 #### Default Values
 | Props              | Default       |
 | ------------------ | ------------- |
-| `imagePreviewConfig`    | `{ width: 350, title: 'Change Avatar' }` |
-| `cropContainerConfig`    | `{ x: 10, y: 10, width: 200, height: 200 }` | 
+| `containerStyle`    | `{ display: 'block', margin: 0, height: 200, width: 200, overflow: 'visible' }` |
+| `imagePreviewConfig`    | `{ width: 350, height: auto, title: 'Change Avatar', fontSize: '24px' }` |
+| `cropContainerConfig`    | `{ x: 10, y: 10, width: 200, height: 200 }` |
 |`cropPreviewBox`    | `{ width: 350, height: 350 }` |
 |`cropRatio`         | `1 / 1` |
 |`saveImageConfig`   | `{quality: 0.6, maxWidth: 200, maxHeight: 200, autoRotate: true, debug: true, mimeType: 'image/jpeg}` |
@@ -150,7 +159,7 @@ export class YourComponent extends Component {
             if (loading) {
               loader = (<MessageCard message='Updating user profile...' />)
             }
-          
+
           return (
               <Mutation mutation={GET_AZURE_SAS} >
                 {(getAzureSAS, { loading, error, data }) => {
@@ -159,7 +168,7 @@ export class YourComponent extends Component {
                   const containerName = user.name
                   const fileName = `${user.name}-avatar.jpg`
                   let avatar = user.profile.avatar
-                  
+
                   let AzureSASURL
                   if (!loading && data !== undefined) {
                     AzureSASURL = data.getAzureSAS
@@ -237,11 +246,11 @@ const createSASQueryURL = async (containerName) => {
   let today = new Date()
   let week = new Date()
   week.setDate(today.getDate() + 7)
-  
+
   // Create SharedKeyCredential and attach to pipline
   const SKC = new Azure.SharedKeyCredential(azureAccount, azureKey)
   const pipeline = Azure.StorageURL.newPipeline(SKC)
-  
+
   // Create container URL
   const serviceURL = new Azure.ServiceURL(azureStorageUrl, pipeline)
   const containerURL = Azure.ContainerURL.fromServiceURL(serviceURL, containerName)
