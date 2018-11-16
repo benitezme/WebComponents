@@ -1,7 +1,7 @@
 {
   "name": "@advancedalgos/web-components",
   "description": "Shared web components for Advanced Algos modules",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Advanced Algos, Ltd",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
@@ -39,7 +39,9 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "prop-types": "^15.6.2",
+    "react": "^16.6.1",
     "react-apollo": "^2.1.11",
+    "react-dom": "^16.6.1",
     "react-dropzone": "^5.1.0",
     "react-image-crop": "^5.0.0",
     "react-image-cropper": "^1.3.0"
