@@ -20,7 +20,7 @@ storiesOf('ImageUpload', module)
       containerName={text('containerName', 'test-team')}
       existingImage={placeholder}
       cropRatio={1}
-      imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      imagePreviewConfig={{ width: 400, height: 100, title: 'Change Avatar', fontSize: '1em' }}
       cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
@@ -29,6 +29,13 @@ storiesOf('ImageUpload', module)
         maxHeight: 200,
         autoRotate: true,
         mimeType: 'image/jpeg'
+      }}
+      containerStyle={{
+        display: 'block',
+        margin: '30px',
+        height: '100px',
+        width: '400px',
+        overflow: 'visible'
       }}
       AzureStorageUrl={text('AzureStorageUrl', 'https://algobotcommstorage.blob.core.windows.net/')}
       AzureSASURL={text('AzureSASURL', '?sv=2017-11-09&ss=b&srt=co&sp=rwlac&se=2019-01-01T14:53:55Z&st=2018-09-20T05:53:55Z&spr=https&sig=sDFrTdrN3hbTT1ugyFoDRjT4D1xZ%2BCz%2Bwouv50hHraA%3D')}

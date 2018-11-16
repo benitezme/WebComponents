@@ -13,8 +13,9 @@ import { DropZone, ImagePreview, CropperDialog } from './components/'
 const styles = theme => ({
   imageUploadContainer: {
     display: 'block',
-    margin: '1em',
-    height: 200
+    margin: 0,
+    height: 200,
+    overflow: 'hidden'
   }
 })
 
@@ -104,7 +105,16 @@ class ImageUpload extends Component {
     }
 
     return (
-      <div className={(containerStyle !== undefined && containerStyle !== null) ? containerStyle : classes.imageUploadContainer}>
+      <div
+        className={classes.imageUploadContainer}
+        style={{
+          'display': containerStyle.display,
+          'margin': containerStyle.margin,
+          'height': containerStyle.height,
+          'width': containerStyle.width,
+          'overflow': containerStyle.overflow
+        }}
+      >
         {this.state.event === 'cropping' && (
           <Typography variant='h6' color='primary' >Cropping...</Typography>
         )}
