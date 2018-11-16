@@ -89,6 +89,7 @@ class ImageUpload extends Component {
   render () {
     const {
       classes,
+      containerStyle,
       existingImage,
       cropRatio,
       fileName
@@ -103,7 +104,7 @@ class ImageUpload extends Component {
     }
 
     return (
-      <div className={classes.imageUploadContainer}>
+      <div className={(containerStyle !== undefined && containerStyle !== null) ? containerStyle : classes.imageUploadContainer}>
         {this.state.event === 'cropping' && (
           <Typography variant='h6' color='primary' >Cropping...</Typography>
         )}
@@ -208,6 +209,7 @@ class ImageUpload extends Component {
 
 ImageUpload.propTypes = {
   classes: PropTypes.object.isRequired,
+  containerStyle: PropTypes.object,
   imagePreviewConfig: PropTypes.object, // { width: 400, title: 'Change Avatar'}
   cropContainerConfig: PropTypes.object, // { x: 10, y: 10, width: 200, height: 200 } (default)
   cropPreviewBox: PropTypes.object, // { width: 350, height: 350 } (default)
