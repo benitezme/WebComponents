@@ -72,7 +72,7 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
       fileName={fileName}
       containerName={containerName}
       existingImage={avatar}
-      imagePreviewConfig={{ width: 350, height:'auto', title: 'Change Avatar', fontSize: '24px' }}
+      imagePreviewConfig={{ width: 350, height:'auto', title: 'Change Avatar', fontSize: '1.5em' }}
       cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
@@ -89,6 +89,7 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
         width: '400px',
         overflow: 'visible'
       }}
+      dropzoneStyle={{ height: 200 }}
       AzureStorageUrl={AzureStorageUrl}
       AzureSASURL={AzureSASURL}
       cropRatio={1}
@@ -108,6 +109,7 @@ export default YourComponent
 | `existingImage`           | String (url) | Url of pre-existing image. Usually will be same as URL returned from `handleUrl`                                                   |
 | `imagePreviewConfig`            | Object | Existing image preview and change button text |
 | `containerStyle`            | Object | Style of main container |
+| `dropzoneStyle`            | Object | Style of dropzone container |
 | `cropContainerConfig`            | Object | Size and location of cropper on image in crop mode |
 | `cropPreviewBox`          | Object | Dimensions of cropper preview |
 | `cropRatio`      | Number | ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150                                                                                                |
@@ -119,6 +121,7 @@ export default YourComponent
 | Props              | Default       |
 | ------------------ | ------------- |
 | `containerStyle`    | `{ display: 'block', margin: 0, height: 200, width: 200, overflow: 'visible' }` |
+| `dropzoneStyle`    | `{ height: 200 }` |
 | `imagePreviewConfig`    | `{ width: 350, height: auto, title: 'Change Avatar', fontSize: '24px' }` |
 | `cropContainerConfig`    | `{ x: 10, y: 10, width: 200, height: 200 }` |
 |`cropPreviewBox`    | `{ width: 350, height: 350 }` |

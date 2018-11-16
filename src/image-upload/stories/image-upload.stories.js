@@ -37,6 +37,7 @@ storiesOf('ImageUpload', module)
         width: '400px',
         overflow: 'visible'
       }}
+      dropzoneStyle={{ height: 200 }}
       AzureStorageUrl={text('AzureStorageUrl', 'https://algobotcommstorage.blob.core.windows.net/')}
       AzureSASURL={text('AzureSASURL', '?sv=2017-11-09&ss=b&srt=co&sp=rwlac&se=2019-01-01T14:53:55Z&st=2018-09-20T05:53:55Z&spr=https&sig=sDFrTdrN3hbTT1ugyFoDRjT4D1xZ%2BCz%2Bwouv50hHraA%3D')}
     />
