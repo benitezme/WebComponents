@@ -62,6 +62,10 @@ const saveImageConfigDefault = {
   mimeType: 'image/jpeg'
 }
 
+const dropzoneStyleDefault = {
+  height: 200
+}
+
 class ImageUpload extends Component {
   constructor (props) {
     super(props)
@@ -80,11 +84,13 @@ class ImageUpload extends Component {
     let cropConfig = props.cropContainerConfig !== undefined ? props.cropContainerConfig : cropConfigDefault
     let saveConfig = props.saveImageConfig !== undefined ? props.saveImageConfig : saveImageConfigDefault
     let cropPreview = props.cropPreviewBox !== undefined ? props.cropPreviewBox : cropPreviewBoxDefault
+    let dropzoneStyleConfig = props.dropzoneStyle !== undefined ? props.dropzoneStyle : dropzoneStyleDefault
     this.containerStyleConfig = containerStyleConfig
     this.previewConfig = previewConfig
     this.cropConfig = cropConfig
     this.saveConfig = saveConfig
     this.cropPreview = cropPreview
+    this.dropzoneStyleConfig = dropzoneStyleConfig
 
     this.state = {
       open: false,
@@ -129,7 +135,7 @@ class ImageUpload extends Component {
                 <ImagePreview handleChangeImage={this.handleChangeImage} image={image} imagePreview={this.previewConfig} />
               )}
               { this.state.event === 'choose' && (
-                <DropZone onDrop={this.onDrop} handleCancel={this.handleCancel} />
+                <DropZone onDrop={this.onDrop} handleCancel={this.handleCancel} dropzoneStyle={this.dropzoneStyleConfig} />
               )}
               { this.state.event === 'uploaded' && (
                 <Typography variant='h6' color='primary' >Save profile to save image changes</Typography>
@@ -224,8 +230,9 @@ class ImageUpload extends Component {
 ImageUpload.propTypes = {
   classes: PropTypes.object.isRequired,
   containerStyle: PropTypes.object,
-  imagePreviewConfig: PropTypes.object, // { width: 400, title: 'Change Avatar'}
+  imagePreviewConfig: PropTypes.object, // { width: 400, height: 'auto', title: 'Change Avatar', fontSize: '1.5em'} (default)
   cropContainerConfig: PropTypes.object, // { x: 10, y: 10, width: 200, height: 200 } (default)
+  dropzoneStyle: PropTypes.object, // { height: 200 } (default)
   cropPreviewBox: PropTypes.object, // { width: 350, height: 350 } (default)
   cropRatio: PropTypes.number.isRequired, // ratio (width/height) image is cropped at eg. 1/1, 4/1, 16/9, 800/150
   saveImageConfig: PropTypes.object, // see imageResizeConfig above for default (default)

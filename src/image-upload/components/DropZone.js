@@ -32,13 +32,14 @@ const styles = theme => ({
   }
 })
 
-export const DropZone = ({ classes, onDrop, handleCancel }) => (
+export const DropZone = ({ classes, onDrop, handleCancel, dropzoneStyle }) => (
   <React.Fragment>
     <Dropzone
       accept='image/jpeg, image/png'
       onDrop={(e) => onDrop(e)}
       className={classes.dropzone}
       multiple={false}
+      style={{ height: dropzoneStyle.height ? dropzoneStyle.height : 200 }}
     >
       <p className={classes.dropzoneText}>Drag *.jpeg or *.png image here or click to select</p>
     </Dropzone>
@@ -57,7 +58,8 @@ export const DropZone = ({ classes, onDrop, handleCancel }) => (
 DropZone.propTypes = {
   classes: PropTypes.object.isRequired,
   onDrop: PropTypes.func.isRequired,
-  handleCancel: PropTypes.func.isRequired
+  handleCancel: PropTypes.func.isRequired,
+  dropzoneStyle: PropTypes.object
 }
 
 export default withStyles(styles)(DropZone)
