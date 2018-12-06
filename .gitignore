@@ -24,6 +24,9 @@ dist
 .env.production.local
 Thumbs.db
 .npm
+.cache
+.cache
+.cache/*
 
 # Logs
 logs

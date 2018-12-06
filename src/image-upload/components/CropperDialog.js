@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import Button from '@material-ui/core/Button'
 
-import { Cropper } from 'react-image-cropper'
+import Cropper from '@bearcanrun/react-image-cropper'
 
 const styles = theme => ({
   dropzone: {
@@ -44,11 +44,14 @@ class CropperDialog extends Component {
               )}
               {imgSrc !== null && (
                 <Cropper
+                  rate={cropRatio}
                   src={imgSrc}
                   originX={100}
                   originY={100}
+                  fixedRatio={true}
+                  selectionNatural={true}
+                  allowNewSelection={false}
                   ref={this.cropper}
-                  ratio={cropRatio}
                 />
               )}
             </div>
