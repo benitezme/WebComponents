@@ -9,11 +9,13 @@ The is a repository for shared React web components between the Advanced Algos p
 * [Installation](#installation)
 * [Usage](#usage)
   * [Message Card](#message-card)
-  * [Image Upload](#image-uploade)
-* [Configuration Options](#configuration-options)
-  * [Message Card](#message-card)
+    * [Message Card Configuration Options](#message-card-configuration-options)
   * [Image Upload](#image-upload)
-  		* [Full Example](#full-example)
+    * [Image Upload Configuration Options](#image-upload-configuration-options)
+    * [Image Upload Default Values](#image-upload-default-values)
+    * [Image Upload Full Example](#image-upload-full-example)
+  * [Page](#page)
+    * [Page Configuration Options](#page-configuration-options)
 * [Developing This Package](#developing-this-package)
 
 ## Installation
@@ -44,13 +46,11 @@ export const YourComponent = () => (
   </div>
 )
 ```
-#### Configuration Options
+#### Message Card Configuration Options
 | Props                | Type                                                            | Default | Note                                                                                                                                                                                               |
 | ------------------ | --------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `message`         | String | ---  | Display any string |
 | `<children>`        | Node                                                          | ---  | Can accept children nodes.                                                                                                |
-
-
 
 
 ## Image Upload
@@ -100,7 +100,7 @@ const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureSto
 export default YourComponent
 ```
 
-#### Configuration Options
+#### Image Upload Configuration Options
 | Props                | Type                                                          | Note                                                                                                                                                                                               |
 | ------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `handleUrl`       | Function | *Required.* Receives the url of the uploaded image |
@@ -117,7 +117,7 @@ export default YourComponent
 | `AzureStorageUrl`      | String  | *Required.* Azure Storage Url (just the storage url; container and filename will be appended)                                                                                                       |
 | `AzureSASURL`      | String | *Required.* The Azure Shared Access Signature (SAS) that allows saving to the Blob without using full-access keys. See [Full Example](#full-example) for server side example.
 
-#### Default Values
+#### Image Upload Default Values
 | Props              | Default       |
 | ------------------ | ------------- |
 | `containerStyle`    | `{ display: 'block', margin: 0, height: 200, width: 200, overflow: 'visible' }` |
@@ -128,7 +128,7 @@ export default YourComponent
 |`cropRatio`         | `1 / 1` |
 |`saveImageConfig`   | `{quality: 0.6, maxWidth: 200, maxHeight: 200, autoRotate: true, debug: true, mimeType: 'image/jpeg}` |
 
-## Full Example
+## Image Upload Full Example
 **YourComponent.js**
 
 ```javascript
@@ -303,6 +303,42 @@ module.exports = { createSASQueryURL }
 
 
 ```
+
+## Page
+The Page component is a wrapper that uses [React Helmet](https://github.com/nfl/react-helmet) to inject page title, description and other metadata into the header to represent the current view.
+
+Supports basic meta data as well as metadata for Twitter and Facebook
+
+** Note 1:** View .env.sample for extra configuration variables that should be added to your environment variables.
+
+** Note 2:** Uses [react-router-dom `withRouter` HoC](https://reacttraining.com/react-router/web/api/withRouter) and requires being used with <BrowserRouter /> &amp; <Route /> components
+
+```javascript
+import React from 'react'
+import { Page, MessageCard } from '@advancedalgos/web-components'
+
+export const YourComponent = () => (
+  <Page
+    title='Advanced Algos Development Platform'
+    subtitile='A Platform View'
+    description='This describes the current view of the Advanced Algos Development Platform'
+  >
+    <MessageCard message={text('Message', 'This message is wrapped by a page component. Check header source to see inserted metadata.')} />
+  </Page>
+)
+```
+#### Page Configuration Options
+| Props                | Type                                                            | Default | Note                                                                                                                                                                                               |
+| ------------------ | --------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`         | String | ---  | Title of site |
+| `subtitle`         | String | ---  | Title of current view |
+| `description`         | String | ---  | Description of current view |
+| `twitter`         | String | ---  | Twitter handle (eg. @advancedalgos) and enables Twitter card metadata |
+| `facebook`         | Boolean | ---  | Enables Facebook OpenGraph metadata |
+| `image`         | string | ---  | URL of image that represents current view |
+| `<children>`        | Node | ---  | Can accept children nodes.    
+
+
 
 # Developing This Package
 ==================================

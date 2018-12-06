@@ -18,8 +18,7 @@ storiesOf('Page', module)
           subtitile='Development Platform'
           description='This is a description of the Advanced Algos Development Platform'
         >
-          {console.log(props)}
-          <MessageCard message={text('Message', 'This message is wrapped by a page component')} />
+          <MessageCard message={text('Message', 'This message is wrapped by a page component. Check header source to see inserted metadata.')} />
         </Page>
       )} />
     </Router>
