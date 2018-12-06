@@ -66,12 +66,18 @@ const styles = theme => ({
     position: 'relative',
     textTransform: 'uppercase',
     fontWeight: 700,
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme.spacing.unit + 6}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme
+      .spacing.unit + 6}px`,
     fontFamily: '"Saira","Saira Condensed", "Arial Narrow", Arial, sans-serif'
   }
 })
 
-export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }) => (
+export const ImagePreview = ({
+  classes,
+  handleChangeImage,
+  image,
+  imagePreview
+}) => (
   <React.Fragment>
     <ButtonBase
       focusRipple

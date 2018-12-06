@@ -79,12 +79,30 @@ class ImageUpload extends Component {
     this.saveImage = this.saveImage.bind(this)
     this.debug = this.props.debug
 
-    let containerStyleConfig = props.containerStyle !== undefined ? props.containerStyle : containerStyleDefault
-    let previewConfig = props.imagePreviewConfig !== undefined ? props.imagePreviewConfig : imagePreviewDefault
-    let cropConfig = props.cropContainerConfig !== undefined ? props.cropContainerConfig : cropConfigDefault
-    let saveConfig = props.saveImageConfig !== undefined ? props.saveImageConfig : saveImageConfigDefault
-    let cropPreview = props.cropPreviewBox !== undefined ? props.cropPreviewBox : cropPreviewBoxDefault
-    let dropzoneStyleConfig = props.dropzoneStyle !== undefined ? props.dropzoneStyle : dropzoneStyleDefault
+    let containerStyleConfig =
+      props.containerStyle !== undefined
+        ? props.containerStyle
+        : containerStyleDefault
+    let previewConfig =
+      props.imagePreviewConfig !== undefined
+        ? props.imagePreviewConfig
+        : imagePreviewDefault
+    let cropConfig =
+      props.cropContainerConfig !== undefined
+        ? props.cropContainerConfig
+        : cropConfigDefault
+    let saveConfig =
+      props.saveImageConfig !== undefined
+        ? props.saveImageConfig
+        : saveImageConfigDefault
+    let cropPreview =
+      props.cropPreviewBox !== undefined
+        ? props.cropPreviewBox
+        : cropPreviewBoxDefault
+    let dropzoneStyleConfig =
+      props.dropzoneStyle !== undefined
+        ? props.dropzoneStyle
+        : dropzoneStyleDefault
     this.containerStyleConfig = containerStyleConfig
     this.previewConfig = previewConfig
     this.cropConfig = cropConfig
@@ -105,12 +123,7 @@ class ImageUpload extends Component {
   }
 
   render () {
-    const {
-      classes,
-      existingImage,
-      cropRatio,
-      fileName
-    } = this.props
+    const { classes, existingImage, cropRatio, fileName } = this.props
 
     let image = null
     if (this.debug) console.log('Image Upload existingImage: ', existingImage)
@@ -126,19 +139,33 @@ class ImageUpload extends Component {
         style={this.containerStyleConfig}
       >
         {this.state.event === 'cropping' && (
-          <Typography variant='h6' color='primary' >Cropping...</Typography>
+          <Typography variant='h6' color='primary'>
+            Cropping...
+          </Typography>
         )}
         {this.state.event !== 'cropping' && (
           <React.Fragment>
             <div>
-              { (this.state.event === 'preview' || this.state.event === 'uploaded') && this.state.event !== 'choose' && (
-                <ImagePreview handleChangeImage={this.handleChangeImage} image={image} imagePreview={this.previewConfig} />
+              {(this.state.event === 'preview' ||
+                this.state.event === 'uploaded') &&
+                this.state.event !== 'choose' && (
+                <ImagePreview
+                  handleChangeImage={this.handleChangeImage}
+                  image={image}
+                  imagePreview={this.previewConfig}
+                />
               )}
-              { this.state.event === 'choose' && (
-                <DropZone onDrop={this.onDrop} handleCancel={this.handleCancel} dropzoneStyle={this.dropzoneStyleConfig} />
+              {this.state.event === 'choose' && (
+                <DropZone
+                  onDrop={this.onDrop}
+                  handleCancel={this.handleCancel}
+                  dropzoneStyle={this.dropzoneStyleConfig}
+                />
               )}
-              { this.state.event === 'uploaded' && (
-                <Typography variant='h6' color='primary' >Save profile to save image changes</Typography>
+              {this.state.event === 'uploaded' && (
+                <Typography variant='h6' color='primary'>
+                  Save profile to save image changes
+                </Typography>
               )}
             </div>
             <CropperDialog
@@ -183,23 +210,44 @@ class ImageUpload extends Component {
     const croppedBlob = await imgSrcToBlob(cropped, 'image/png', 'Anonymous')
     let resizedBlob = await readAndCompressImage(croppedBlob, this.saveConfig)
 
-    return this.setState({ editedImage: resizedBlob, event: 'cropping', open: false }, () => {
-      this.saveImage()
-    })
+    return this.setState(
+      { editedImage: resizedBlob, event: 'cropping', open: false },
+      () => {
+        this.saveImage()
+      }
+    )
   }
 
   async saveImage () {
-    const { AzureStorageUrl, AzureSASURL, containerName, fileName, handleUrl } = this.props
+    const {
+      AzureStorageUrl,
+      AzureSASURL,
+      containerName,
+      fileName,
+      handleUrl
+    } = this.props
     const SASurl = `${AzureStorageUrl}?${AzureSASURL}`
 
     // create Azure BlockBlobURL to save image to
-    const pipeline = Azure.StorageURL.newPipeline(new Azure.AnonymousCredential())
+    const pipeline = Azure.StorageURL.newPipeline(
+      new Azure.AnonymousCredential()
+    )
     const serviceURL = new Azure.ServiceURL(SASurl, pipeline)
 
-    const containerURL = Azure.ContainerURL.fromServiceURL(serviceURL, containerName)
-    const blockBlobURL = Azure.BlockBlobURL.fromContainerURL(containerURL, fileName)
+    const containerURL = Azure.ContainerURL.fromServiceURL(
+      serviceURL,
+      containerName
+    )
+    const blockBlobURL = Azure.BlockBlobURL.fromContainerURL(
+      containerURL,
+      fileName
+    )
 
-    await Azure.uploadBrowserDataToBlockBlob(Azure.Aborter.None, this.state.editedImage, blockBlobURL)
+    await Azure.uploadBrowserDataToBlockBlob(
+      Azure.Aborter.None,
+      this.state.editedImage,
+      blockBlobURL
+    )
 
     const image = `${AzureStorageUrl}${containerName}/${fileName}`
     handleUrl(image) // pass image URL up to be save to DB

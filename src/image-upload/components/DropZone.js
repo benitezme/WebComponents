@@ -36,12 +36,14 @@ export const DropZone = ({ classes, onDrop, handleCancel, dropzoneStyle }) => (
   <React.Fragment>
     <Dropzone
       accept='image/jpeg, image/png'
-      onDrop={(e) => onDrop(e)}
+      onDrop={e => onDrop(e)}
       className={classes.dropzone}
       multiple={false}
       style={{ height: dropzoneStyle.height ? dropzoneStyle.height : 200 }}
     >
-      <p className={classes.dropzoneText}>Drag *.jpeg or *.png image here or click to select</p>
+      <p className={classes.dropzoneText}>
+        Drag *.jpeg or *.png image here or click to select
+      </p>
     </Dropzone>
     <Button
       size='small'

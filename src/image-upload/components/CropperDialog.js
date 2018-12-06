@@ -29,7 +29,14 @@ class CropperDialog extends Component {
   }
 
   render () {
-    const { classes, open, handleClose, imgSrc, handleCancel, cropRatio } = this.props
+    const {
+      classes,
+      open,
+      handleClose,
+      imgSrc,
+      handleCancel,
+      cropRatio
+    } = this.props
     return (
       <Dialog
         open={open}
@@ -38,10 +45,8 @@ class CropperDialog extends Component {
       >
         <div classes={classes.dialogContainer}>
           <DialogContent>
-            <div className={classes.cropImageBox} >
-              {imgSrc === null && (
-                <div>Loading...</div>
-              )}
+            <div className={classes.cropImageBox}>
+              {imgSrc === null && <div>Loading...</div>}
               {imgSrc !== null && (
                 <Cropper
                   rate={cropRatio}
@@ -60,10 +65,7 @@ class CropperDialog extends Component {
             <Button onClick={handleCancel} color='primary'>
               Cancel
             </Button>
-            <Button
-              onClick={this.handleCrop}
-              color='primary'
-            >
+            <Button onClick={this.handleCrop} color='primary'>
               Crop Image
             </Button>
           </DialogActions>
