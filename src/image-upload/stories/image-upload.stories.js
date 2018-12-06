@@ -9,7 +9,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import ImageUpload from '../index'
 import { CropperDialog, DropZone, ImagePreview } from '../components'
 
-const placeholder = 'https://algobotcommstorage.blob.core.windows.net/aateammodule/aa-logo.png'
+const placeholder = 'https://aadevelop.blob.core.windows.net/module-teams/module-default/aa-avatar-default.png'
 
 storiesOf('ImageUpload', module)
   .addDecorator(withKnobs)
@@ -19,7 +19,7 @@ storiesOf('ImageUpload', module)
       fileName={text('fileName', 'test-avatar.jpg')}
       containerName={text('containerName', 'test-team')}
       existingImage={placeholder}
-      cropRatio={1}
+      cropRatio={4/1}
       imagePreviewConfig={{ width: 400, height: 100, title: 'Change Avatar', fontSize: '1em' }}
       cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
