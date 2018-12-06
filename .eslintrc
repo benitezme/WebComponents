@@ -2,13 +2,14 @@
   "settings": {
     "react": {
       "pragma": "React",
-      "version": "16.0"
+      "version": "latest"
     }
   },
   "extends": ["standard", "standard-react", "plugin:jest/recommended"],
-  "plugins": ["jest"],
+  "plugins": ["react","jest"],
   rules: {
     'jest/valid-expect': 0,
     'react/jsx-boolean-value': 0
-  }
+  },
+  parser: "babel-eslint"
 }
