@@ -123,7 +123,6 @@ class Page extends Component {
 
 Page.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   location: PropTypes.object
 }
 
