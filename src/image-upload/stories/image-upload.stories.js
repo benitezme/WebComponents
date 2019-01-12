@@ -10,7 +10,7 @@ import ImageUpload from '../index'
 import { CropperDialog, DropZone, ImagePreview } from '../components'
 
 const placeholder =
-  'https://aadevelop.blob.core.windows.net/module-web-components/assets/aa-logo.png'
+  'https://aadevelop.blob.core.windows.net/module-web-components/assets/Superalgos-logo-horz-sm.jpg'
 
 storiesOf('ImageUpload', module)
   .addDecorator(withKnobs)
@@ -46,7 +46,7 @@ storiesOf('ImageUpload', module)
       dropzoneStyle={{ height: 200 }}
       AzureStorageUrl={text(
         'AzureStorageUrl',
-        'https://algobotcommstorage.blob.core.windows.net/'
+        'https://[storageURL].blob.core.windows.net/'
       )}
       AzureSASURL={text(
         'AzureSASURL',

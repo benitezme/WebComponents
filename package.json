@@ -1,12 +1,12 @@
 {
-  "name": "@advancedalgos/web-components",
-  "description": "Shared web components for Advanced Algos modules",
+  "name": "@superalgos/web-components",
+  "description": "Shared web components for Superalgos modules",
   "version": "0.0.18",
   "author": "Advanced Algos, Ltd",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdvancedAlgos/WebComponents.git"
+    "url": "https://github.com/Superalgos/WebComponents.git"
   },
   "keywords": [
     "react",

@@ -14,7 +14,7 @@ const cropPreview = {
   height: 350
 }
 const placeHolder =
-  'https://aadevelop.blob.core.windows.net/module-web-components/assets/aa-logo.png'
+  'https://aadevelop.blob.core.windows.net/module-web-components/assets/Superalgos-logo-horz-sm.jpg'
 
 const ComponentNaked = unwrap(CropperDialog)
 

@@ -14,9 +14,9 @@ storiesOf('Page', module)
     <Router>
       <Route path='/' component={props => (
         <Page
-          title='Advanced Algos'
+          title='Superalgos project'
           subtitile='Development Platform'
-          description='This is a description of the Advanced Algos Development Platform'
+          description='This is a description of the Superalgos Development Platform'
         >
           <MessageCard message={text('Message', 'This message is wrapped by a page component. Check header source to see inserted metadata.')} />
         </Page>
