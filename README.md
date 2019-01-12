@@ -1,9 +1,9 @@
-# Advanced Algos Web Components
-[![npm version](https://badge.fury.io/js/%40advancedalgos%2Fweb-components.svg)](https://badge.fury.io/js/%40advancedalgos%2Fweb-components)
+# Superalgos Web Components
+[![npm version](https://badge.fury.io/js/%40superalgos%2Fweb-components.svg)](https://badge.fury.io/js/%40superalgos%2Fweb-components)
 
 ## Introduction
 
-The is a repository for shared React web components between the Advanced Algos platform modules.
+The is a repository for shared React web components between the Superalgos platform modules.
 
 
 * [Installation](#installation)
@@ -25,7 +25,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-$ npm install @advancedalgos/web-components
+$ npm install @superalgos/web-components
 ```
 
 # Usage
@@ -35,7 +35,7 @@ The Message Card is a simple component for outputting a message within a card. G
 
 ```javascript
 import React from 'react'
-import { MessageCard } from '@advancedalgos/web-components'
+import { MessageCard } from '@superalgos/web-components'
 
 export const YourComponent = () => (
   <div>
@@ -62,7 +62,7 @@ View the [Full Example](#full-example) for examples with use of client-side Grap
 
 ```javascript
 import React from 'react'
-import { MessageCard, ImageUpload } from '@advancedalgos/web-components'
+import { MessageCard, ImageUpload } from '@superalgos/web-components'
 
 const YourComponent = ({ handleAvatar, filename, containerName, avatar, AzureStorageUrl, AzureSASURL }) => (
   <React.Fragment>
@@ -134,7 +134,7 @@ export default YourComponent
 ```javascript
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
-import { MessageCard, ImageUpload } from '@advancedalgos/web-components'
+import { MessageCard, ImageUpload } from '@superalgos/web-components'
 
 const GET_AZURE_SAS = gql`
   mutation getAzureSAS($containerName: String!) {
@@ -315,13 +315,13 @@ Supports basic meta data as well as metadata for Twitter and Facebook
 
 ```javascript
 import React from 'react'
-import { Page, MessageCard } from '@advancedalgos/web-components'
+import { Page, MessageCard } from '@superalgos/web-components'
 
 export const YourComponent = () => (
   <Page
-    title='Advanced Algos Development Platform'
+    title='Superalgos Development Platform'
     subtitile='A Platform View'
-    description='This describes the current view of the Advanced Algos Development Platform'
+    description='This describes the current view of the Superalgos Development Platform'
   >
     <MessageCard message={text('Message', 'This message is wrapped by a page component. Check header source to see inserted metadata.')} />
   </Page>
@@ -333,7 +333,7 @@ export const YourComponent = () => (
 | `title`         | String | ---  | Title of site |
 | `subtitle`         | String | ---  | Title of current view |
 | `description`         | String | ---  | Description of current view |
-| `twitter`         | String | ---  | Twitter handle (eg. @advancedalgos) and enables Twitter card metadata |
+| `twitter`         | String | ---  | Twitter handle (eg. @superalgos) and enables Twitter card metadata |
 | `facebook`         | Boolean | ---  | Enables Facebook OpenGraph metadata |
 | `image`         | string | ---  | URL of image that represents current view |
 | `<children>`        | Node | ---  | Can accept children nodes.    
