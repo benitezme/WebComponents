@@ -7,7 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import Button from '@material-ui/core/Button'
 
-import { Cropper } from 'react-image-cropper'
+import Cropper from '@bearcanrun/react-image-cropper'
 
 const styles = theme => ({
   dropzone: {
@@ -29,7 +29,14 @@ class CropperDialog extends Component {
   }
 
   render () {
-    const { classes, open, handleClose, imgSrc, handleCancel, cropRatio } = this.props
+    const {
+      classes,
+      open,
+      handleClose,
+      imgSrc,
+      handleCancel,
+      cropRatio
+    } = this.props
     return (
       <Dialog
         open={open}
@@ -38,17 +45,18 @@ class CropperDialog extends Component {
       >
         <div classes={classes.dialogContainer}>
           <DialogContent>
-            <div className={classes.cropImageBox} >
-              {imgSrc === null && (
-                <div>Loading...</div>
-              )}
+            <div className={classes.cropImageBox}>
+              {imgSrc === null && <div>Loading...</div>}
               {imgSrc !== null && (
                 <Cropper
+                  rate={cropRatio}
                   src={imgSrc}
                   originX={100}
                   originY={100}
+                  fixedRatio={true}
+                  selectionNatural={true}
+                  allowNewSelection={false}
                   ref={this.cropper}
-                  ratio={cropRatio}
                 />
               )}
             </div>
@@ -57,10 +65,7 @@ class CropperDialog extends Component {
             <Button onClick={handleCancel} color='primary'>
               Cancel
             </Button>
-            <Button
-              onClick={this.handleCrop}
-              color='primary'
-            >
+            <Button onClick={this.handleCrop} color='primary'>
               Crop Image
             </Button>
           </DialogActions>

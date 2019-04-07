@@ -8,4 +8,6 @@ import MessageCard from '../index'
 
 storiesOf('MessageCard', module)
   .addDecorator(withKnobs)
-  .add('with text', () => <MessageCard message={text('Message', 'This is a message')} />)
+  .add('with text', () => (
+    <MessageCard message={text('Message', 'This is a message')} />
+  ))

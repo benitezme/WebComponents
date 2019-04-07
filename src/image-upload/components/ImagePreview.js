@@ -15,6 +15,7 @@ const styles = theme => ({
   image: {
     position: 'relative',
     height: 200,
+    width: 'auto',
     [theme.breakpoints.down('xs')]: {
       width: '100% !important', // Overrides inline-style
       height: 100
@@ -65,11 +66,18 @@ const styles = theme => ({
     position: 'relative',
     textTransform: 'uppercase',
     fontWeight: 700,
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4}px ${theme.spacing.unit + 6}px`
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px ${theme
+      .spacing.unit + 6}px`,
+    fontFamily: '"Saira","Saira Condensed", "Arial Narrow", Arial, sans-serif'
   }
 })
 
-export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }) => (
+export const ImagePreview = ({
+  classes,
+  handleChangeImage,
+  image,
+  imagePreview
+}) => (
   <React.Fragment>
     <ButtonBase
       focusRipple
@@ -78,7 +86,8 @@ export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }
       focusVisibleClassName={classes.focusVisible}
       onClick={handleChangeImage}
       style={{
-        width: imagePreview.width
+        width: imagePreview.width,
+        height: imagePreview.height
       }}
     >
       <span
@@ -94,6 +103,9 @@ export const ImagePreview = ({ classes, handleChangeImage, image, imagePreview }
           variant='h3'
           color='inherit'
           className={classes.imageTitle}
+          style={{
+            fontSize: imagePreview.fontSize
+          }}
         >
           {imagePreview.title}
         </Typography>

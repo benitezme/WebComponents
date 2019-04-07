@@ -19,6 +19,12 @@ describe('MessageCard tests', () => {
 
     // Expect the wrapper object to be defined
     expect(wrapper.find('MessageCard')).toBeDefined()
-    expect(wrapper.dive().dive().dive().find('h1'))
+    expect(
+      wrapper
+        .dive()
+        .dive()
+        .dive()
+        .find('h1')
+    )
   })
 })

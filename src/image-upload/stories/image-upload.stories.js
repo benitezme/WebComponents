@@ -9,7 +9,8 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import ImageUpload from '../index'
 import { CropperDialog, DropZone, ImagePreview } from '../components'
 
-const placeholder = 'https://algobotcommstorage.blob.core.windows.net/aateammodule/aa-logo.png'
+const placeholder =
+  'https://aadevelop.blob.core.windows.net/module-web-components/assets/Superalgos-logo-horz-sm.jpg'
 
 storiesOf('ImageUpload', module)
   .addDecorator(withKnobs)
@@ -19,8 +20,13 @@ storiesOf('ImageUpload', module)
       fileName={text('fileName', 'test-avatar.jpg')}
       containerName={text('containerName', 'test-team')}
       existingImage={placeholder}
-      cropRatio={1}
-      imagePreviewConfig={{ width: 350, title: 'Change Avatar' }}
+      cropRatio={4 / 1}
+      imagePreviewConfig={{
+        width: 400,
+        height: 100,
+        title: 'Change Avatar',
+        fontSize: '1em'
+      }}
       cropContainerConfig={{ x: 10, y: 10, width: 200, height: 200 }}
       cropPreviewBox={{ width: 350, height: 350 }}
       saveImageConfig={{
@@ -30,8 +36,22 @@ storiesOf('ImageUpload', module)
         autoRotate: true,
         mimeType: 'image/jpeg'
       }}
-      AzureStorageUrl={text('AzureStorageUrl', 'https://algobotcommstorage.blob.core.windows.net/')}
-      AzureSASURL={text('AzureSASURL', '?sv=2017-11-09&ss=b&srt=co&sp=rwlac&se=2019-01-01T14:53:55Z&st=2018-09-20T05:53:55Z&spr=https&sig=sDFrTdrN3hbTT1ugyFoDRjT4D1xZ%2BCz%2Bwouv50hHraA%3D')}
+      containerStyle={{
+        display: 'block',
+        margin: '30px',
+        height: '100px',
+        width: '400px',
+        overflow: 'visible'
+      }}
+      dropzoneStyle={{ height: 200 }}
+      AzureStorageUrl={text(
+        'AzureStorageUrl',
+        'https://[storageURL].blob.core.windows.net/'
+      )}
+      AzureSASURL={text(
+        'AzureSASURL',
+        '?sv=2017-11-09&ss=b&srt=co&sp=rwlac&se=2019-01-01T14:53:55Z&st=2018-09-20T05:53:55Z&spr=https&sig=sDFrTdrN3hbTT1ugyFoDRjT4D1xZ%2BCz%2Bwouv50hHraA%3D'
+      )}
     />
   ))
 
@@ -44,9 +64,9 @@ var options = {
   cache: 'default'
 }
 const request = new window.Request(placeholder)
-const downloadedImg = window.fetch(request, options).then((response) => {
+const downloadedImg = window.fetch(request, options).then(response => {
   console.log('downloadedImg: ', response)
-  return response.arrayBuffer().then((buffer) => {
+  return response.arrayBuffer().then(buffer => {
     var base64Flag = 'data:image/jpeg;base64,'
     var imageStr = arrayBufferToBase64(buffer)
 
@@ -54,11 +74,13 @@ const downloadedImg = window.fetch(request, options).then((response) => {
   })
 })
 
-const arrayBufferToBase64 = (buffer) => {
+const arrayBufferToBase64 = buffer => {
   var binary = ''
   var bytes = [].slice.call(new Uint8Array(buffer))
 
-  bytes.forEach((b) => { binary += String.fromCharCode(b) })
+  bytes.forEach(b => {
+    binary += String.fromCharCode(b)
+  })
 
   return window.btoa(binary)
 }
@@ -81,10 +103,17 @@ class LoadImage extends React.Component {
 storiesOf('ImageUpload Components', module)
   .addDecorator(withKnobs)
   .add('Image Preview component', () => (
-    <ImagePreview handleChangeImage={action('Change clicked')} image={placeholder} imagePreview={{ width: 400, title: 'Change Avatar' }} />
+    <ImagePreview
+      handleChangeImage={action('Change clicked')}
+      image={placeholder}
+      imagePreview={{ width: 400, title: 'Change Avatar' }}
+    />
   ))
   .add('DropZone component', () => (
-    <DropZone onDrop={action('Image dropped or selected')} handleCancel={action('Change image cancelled')} />
+    <DropZone
+      onDrop={action('Image dropped or selected')}
+      handleCancel={action('Change image cancelled')}
+    />
   ))
   .add('Cropper Dialog component: open', () => (
     <LoadImage>
@@ -102,7 +131,6 @@ storiesOf('ImageUpload Components', module)
             cropRatio={1}
           />
         )
-      }
-      }
+      }}
     </LoadImage>
   ))

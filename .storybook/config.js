@@ -3,7 +3,7 @@ import { configure } from '@storybook/react';
 
 setOptions({
   addonPanelInRight: true,
-  name: "Advanced Algos Web Components",
+  name: "Superalgos Web Components",
 });
 
 // automatically import all files ending in *.stories.js
