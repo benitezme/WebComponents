@@ -33,6 +33,17 @@ module.exports = merge(commonConfig, {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: [
+          /(node_modules|bower_components)/,
+          /\*\/stories/
+        ],
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
+      {
         test: /\.s?[ac]ss$/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'
       },
