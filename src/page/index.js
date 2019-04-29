@@ -14,9 +14,9 @@ SITE_URL = process.env.SITE_URL ? process.env.SITE_URL : SITE_URL
 
 const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID ? process.env.FACEBOOK_APP_ID : null
 
-const defaultTitle = 'Advanced Algos Platform'
+const defaultTitle = 'Superalgos Platform'
 const defaultDescription =
-  'The Advanced Algos Web Platform is the central hub for developing Financial Beings'
+  'A superior trading intelligene evolved through the global collaboration of humans and machines as a service for all people'
 const defaultImage = 'https://aadevelop.blob.core.windows.net/module-web-components/assets/aa-logo.png'
 const defaultTwitter = '@advancedalgos'
 const defaultSep = ' | '
