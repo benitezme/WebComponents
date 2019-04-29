@@ -17,7 +17,6 @@ module.exports = merge(commonConfig, {
       path: '.env'
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin({ multiStep: false }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../../examples/src/index.html'),
       filename: './index.html'
