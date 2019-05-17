@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import * as Azure from '@azure/storage-blob'
-import readAndCompressImage from 'browser-image-resizer'
+import { readAndCompressImage } from 'browser-image-resizer'
 import { imgSrcToBlob } from 'blob-util'
 import { withStyles } from '@material-ui/core/styles'
 

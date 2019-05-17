@@ -17,7 +17,6 @@ module.exports = merge(commonConfig, {
       path: '.env'
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin({ multiStep: false }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../../examples/src/index.html'),
       filename: './index.html'
@@ -32,6 +31,17 @@ module.exports = merge(commonConfig, {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: [
+          /(node_modules|bower_components)/,
+          /\*\/stories/
+        ],
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
       {
         test: /\.s?[ac]ss$/,
         loader: 'style-loader!css-loader!postcss-loader!sass-loader'

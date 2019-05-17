@@ -27,34 +27,37 @@ const styles = theme => ({
     cursor: 'pointer'
   },
   cancelButton: {
-    position: 'relative',
-    top: '-3em'
+    display: 'flex'
   }
 })
 
 export const DropZone = ({ classes, onDrop, handleCancel, dropzoneStyle }) => (
-  <React.Fragment>
-    <Dropzone
-      accept='image/jpeg, image/png'
-      onDrop={e => onDrop(e)}
-      className={classes.dropzone}
-      multiple={false}
-      style={{ height: dropzoneStyle.height ? dropzoneStyle.height : 200 }}
-    >
-      <p className={classes.dropzoneText}>
-        Drag *.jpeg or *.png image here or click to select
-      </p>
-    </Dropzone>
-    <Button
-      size='small'
-      variant='contained'
-      onClick={handleCancel}
-      color='secondary'
-      className={classes.cancelButton}
-    >
-      Cancel Image Change
-    </Button>
-  </React.Fragment>
+  <Dropzone
+    accept='image/jpeg, image/png'
+    onDrop={e => onDrop(e)}
+    className={classes.dropzone}
+    multiple={false}
+    style={{ height: (dropzoneStyle.height !== undefined && dropzoneStyle.height) ? dropzoneStyle.height : 200 }}
+    children={({ getRootProps, getInputProps }) => {
+      return (
+        <React.Fragment>
+          <input {...getInputProps()} />
+          <p className={classes.dropzoneText} {...getRootProps()}>
+            Drag *.jpeg or *.png image here or click to select
+          </p>
+          <Button
+            size='small'
+            variant='outlined'
+            onClick={handleCancel}
+            color='secondary'
+            className={classes.cancelButton}
+          >
+            Cancel Image Change
+          </Button>
+        </React.Fragment>
+      )
+    }}
+  />
 )
 
 DropZone.propTypes = {

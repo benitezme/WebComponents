@@ -112,6 +112,7 @@ storiesOf('ImageUpload Components', module)
   .add('DropZone component', () => (
     <DropZone
       onDrop={action('Image dropped or selected')}
+      dropzoneStyle={{ height: 200 }}
       handleCancel={action('Change image cancelled')}
     />
   ))
