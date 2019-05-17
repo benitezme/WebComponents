@@ -38,10 +38,11 @@ export const DropZone = ({ classes, onDrop, handleCancel, dropzoneStyle }) => (
     className={classes.dropzone}
     multiple={false}
     style={{ height: (dropzoneStyle.height !== undefined && dropzoneStyle.height) ? dropzoneStyle.height : 200 }}
-    children={() => {
+    children={({ getRootProps, getInputProps }) => {
       return (
         <React.Fragment>
-          <p className={classes.dropzoneText}>
+          <input {...getInputProps()} />
+          <p className={classes.dropzoneText} {...getRootProps()}>
             Drag *.jpeg or *.png image here or click to select
           </p>
           <Button
