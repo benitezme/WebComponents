@@ -1,7 +1,7 @@
 {
   "name": "@superalgos/web-components",
   "description": "Shared web components for Superalgos modules",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "author": "Barry Low <bearcanrun@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
